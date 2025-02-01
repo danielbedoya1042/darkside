@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Viaje Espacial</title>
+    <!-- Fuente Star Wars -->
     <link href="https://fonts.cdnfonts.com/css/star-wars" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/led-7" rel="stylesheet"> <!-- Fuente estilo calculadora -->
+    <!-- Fuente estilo calculadora (Digital) -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         body, html {
             margin: 0;
@@ -77,7 +79,7 @@
             z-index: 100; /* Aseguramos que el letrero esté encima de las estrellas */
         }
 
-        /* Estilo del letrero de Contactanos */
+        /* Estilo del letrero de Contact */
         .contact {
             position: absolute;
             top: 60%;  /* Posicionamos debajo del primer letrero */
@@ -85,7 +87,19 @@
             transform: translateX(-50%);
             font-size: 30px;
             color: #00FF00; /* Color verde brillante como las pantallas de calculadora */
-            font-family: 'Led-7', monospace; /* Usamos la fuente estilo calculadora */
+            font-family: 'Press Start 2P', cursive; /* Fuente estilo calculadora */
+            text-shadow: 0 0 15px rgba(0, 255, 0, 0.8), 0 0 25px rgba(0, 255, 0, 0.6);
+            z-index: 100;
+        }
+
+        .email {
+            position: absolute;
+            top: 70%; /* Abajo del letrero de Contact */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 25px;
+            color: #00FF00; /* Verde brillante */
+            font-family: 'Press Start 2P', cursive;
             text-shadow: 0 0 15px rgba(0, 255, 0, 0.8), 0 0 25px rgba(0, 255, 0, 0.6);
             z-index: 100;
         }
@@ -102,8 +116,11 @@
         <!-- Letrero en el centro -->
         <div class="sign">The Dark Side Software</div>
 
-        <!-- Letrero de contacto -->
-        <div class="contact">Contáctanos</div>
+        <!-- Letrero de Contact -->
+        <div class="contact">Contact</div>
+
+        <!-- Correo electrónico -->
+        <div class="email">sebastian@thedarkside.com.co</div>
     </div>
 </body>
 </html>
