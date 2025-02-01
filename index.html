@@ -26,7 +26,8 @@
             height: 3px;
             border-radius: 50%;
             background-color: white;
-            animation: moveStar 5s linear infinite;
+            box-shadow: 0 0 10px white; /* Efecto de brillo */
+            animation: moveStar 5s linear infinite, flicker 0.5s alternate infinite;
         }
 
         /* Animación de movimiento de las estrellas por toda la pantalla */
@@ -36,6 +37,16 @@
             }
             100% {
                 transform: translateX(100vw) translateY(100vh);
+            }
+        }
+
+        /* Efecto de parpadeo para hacer las estrellas más brillantes */
+        @keyframes flicker {
+            0% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 1;
             }
         }
 
