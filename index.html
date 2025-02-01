@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fondo de Universo con Efecto 3D</title>
+    <style>
+        /* Establecer el fondo negro y eliminar márgenes */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: black;
+        }
+
+        /* Configuración del contenedor del universo */
+        .universe {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            animation: moveForward 5s linear infinite;
+        }
+
+        /* Movimiento de la cámara hacia adelante */
+        @keyframes moveForward {
+            0% {
+                transform: translateZ(0);
+            }
+            100% {
+                transform: translateZ(-1000px);
+            }
+        }
+
+        /* Estilos de las estrellas */
+        .star {
+            position: absolute;
+            border-radius: 50%;
+            background-color: white;
+            opacity: 0.7;
+            pointer-events: none;
+            animation: moveStars 1s linear infinite;
+        }
+
+        /* Animación de las estrellas hacia la cámara */
+        @keyframes moveStars {
+            0% {
+                transform: translateZ(0);
+            }
+            100% {
+                transform: translateZ(-500px);
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="universe">
+        <!-- Estrellas generadas dinámicamente con JavaScript -->
+        <script>
+            const numStars = 100; // Número de estrellas
+            const universe = document.querySelector('.universe'); 
+
+            // Crear las estrellas
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Posición aleatoria en 3D (X, Y, Z)
+                const xPos = Math.random() * 100 - 50;  // Variación en X
+                const yPos = Math.random() * 100 - 50;  // Variación en Y
+                const zPos = Math.random() * 1000;      // Profundidad en Z
+                
+                // Establecer propiedades de las estrellas
+                star.style.transform = `translate3d(${xPos}vw, ${yPos}vh, ${zPos}px)`;
+                
+                // Tamaño aleatorio
+                const size = Math.random() * 3 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+
+                universe.appendChild(star);
+            }
+        </script>
+    </div>
+
+</body>
+</html>
