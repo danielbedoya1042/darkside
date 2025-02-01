@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fondo de Universo con Efecto 3D</title>
+    <title>Viaje Espacial</title>
     <style>
-        /* Establecer el fondo negro y eliminar márgenes */
         body, html {
             margin: 0;
             padding: 0;
@@ -14,17 +13,29 @@
             background-color: black;
         }
 
-        /* Configuración del contenedor del universo */
-        .universe {
-            position: absolute;
+        .space {
+            position: relative;
             width: 100%;
             height: 100%;
-            transform-style: preserve-3d;
-            animation: moveForward 5s linear infinite;
+            overflow: hidden;
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: spaceAnimation 5s linear infinite;
         }
 
-        /* Movimiento de la cámara hacia adelante */
-        @keyframes moveForward {
+        .star {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: white;
+            animation: starAnimation 1s infinite linear;
+        }
+
+        /* Crear el efecto de movimiento espacial */
+        @keyframes spaceAnimation {
             0% {
                 transform: translateZ(0);
             }
@@ -33,58 +44,42 @@
             }
         }
 
-        /* Estilos de las estrellas */
-        .star {
-            position: absolute;
-            border-radius: 50%;
-            background-color: white;
-            opacity: 0.7;
-            pointer-events: none;
-            animation: moveStars 1s linear infinite;
-        }
-
-        /* Animación de las estrellas hacia la cámara */
-        @keyframes moveStars {
+        /* Animación de las estrellas moviéndose hacia el espectador */
+        @keyframes starAnimation {
             0% {
+                opacity: 0.5;
                 transform: translateZ(0);
             }
             100% {
+                opacity: 1;
                 transform: translateZ(-500px);
             }
         }
 
+        /* Estilo para estrellas aleatorias */
+        .star:nth-child(odd) {
+            animation-duration: 2s;
+        }
+        .star:nth-child(even) {
+            animation-duration: 3s;
+        }
     </style>
 </head>
 <body>
-
-    <div class="universe">
-        <!-- Estrellas generadas dinámicamente con JavaScript -->
-        <script>
-            const numStars = 100; // Número de estrellas
-            const universe = document.querySelector('.universe'); 
-
-            // Crear las estrellas
-            for (let i = 0; i < numStars; i++) {
-                const star = document.createElement('div');
-                star.classList.add('star');
-                
-                // Posición aleatoria en 3D (X, Y, Z)
-                const xPos = Math.random() * 100 - 50;  // Variación en X
-                const yPos = Math.random() * 100 - 50;  // Variación en Y
-                const zPos = Math.random() * 1000;      // Profundidad en Z
-                
-                // Establecer propiedades de las estrellas
-                star.style.transform = `translate3d(${xPos}vw, ${yPos}vh, ${zPos}px)`;
-                
-                // Tamaño aleatorio
-                const size = Math.random() * 3 + 1;
-                star.style.width = `${size}px`;
-                star.style.height = `${size}px`;
-
-                universe.appendChild(star);
-            }
-        </script>
+    <div class="space">
+        <!-- Estrellas -->
+        <div class="star" style="top: 20%; left: 10%;"></div>
+        <div class="star" style="top: 30%; left: 60%;"></div>
+        <div class="star" style="top: 50%; left: 30%;"></div>
+        <div class="star" style="top: 70%; left: 80%;"></div>
+        <div class="star" style="top: 40%; left: 50%;"></div>
+        <div class="star" style="top: 60%; left: 90%;"></div>
+        <div class="star" style="top: 80%; left: 10%;"></div>
+        <div class="star" style="top: 10%; left: 70%;"></div>
+        <div class="star" style="top: 90%; left: 40%;"></div>
+        <div class="star" style="top: 20%; left: 90%;"></div>
+        <div class="star" style="top: 60%; left: 20%;"></div>
+        <div class="star" style="top: 50%; left: 50%;"></div>
     </div>
-
 </body>
 </html>
