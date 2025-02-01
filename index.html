@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Viaje Espacial</title>
     <link href="https://fonts.cdnfonts.com/css/star-wars" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/led-7" rel="stylesheet"> <!-- Fuente estilo calculadora -->
     <style>
         body, html {
             margin: 0;
@@ -12,7 +13,7 @@
             height: 100%;
             overflow: hidden;
             background-color: black;
-            font-family: 'Star Wars', sans-serif; /* Usamos la fuente Star Wars */
+            font-family: 'Star Wars', sans-serif; /* Fuente Star Wars */
         }
 
         .space {
@@ -64,7 +65,7 @@
         .star:nth-child(10) { top: 30%; left: 80%; animation-duration: 8s; }
         /* ... otras estrellas ... */
 
-        /* Estilo del letrero */
+        /* Estilo del letrero principal (The Dark Side Software) */
         .sign {
             position: absolute;
             top: 50%;
@@ -76,6 +77,18 @@
             z-index: 100; /* Aseguramos que el letrero esté encima de las estrellas */
         }
 
+        /* Estilo del letrero de Contactanos */
+        .contact {
+            position: absolute;
+            top: 60%;  /* Posicionamos debajo del primer letrero */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 30px;
+            color: #00FF00; /* Color verde brillante como las pantallas de calculadora */
+            font-family: 'Led-7', monospace; /* Usamos la fuente estilo calculadora */
+            text-shadow: 0 0 15px rgba(0, 255, 0, 0.8), 0 0 25px rgba(0, 255, 0, 0.6);
+            z-index: 100;
+        }
     </style>
 </head>
 <body>
@@ -84,31 +97,13 @@
         <div class="star"></div>
         <div class="star"></div>
         <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        
+        <!-- ... más estrellas ... -->
 
         <!-- Letrero en el centro -->
         <div class="sign">The Dark Side Software</div>
+
+        <!-- Letrero de contacto -->
+        <div class="contact">Contáctanos</div>
     </div>
 </body>
 </html>
