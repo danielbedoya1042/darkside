@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Viaje Espacial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Star+Jedi&display=swap" rel="stylesheet">
     <style>
         body, html {
             margin: 0;
@@ -11,6 +12,7 @@
             height: 100%;
             overflow: hidden;
             background-color: black;
+            font-family: 'Star Jedi', sans-serif;
         }
 
         .space {
@@ -50,99 +52,42 @@
             }
         }
 
-        /* Crear estrellas en diferentes posiciones iniciales */
-        .star:nth-child(1) {
-            top: 5%; left: 10%; animation-duration: 10s;
+        .star:nth-child(1) { top: 5%; left: 10%; animation-duration: 10s; }
+        .star:nth-child(2) { top: 20%; left: 40%; animation-duration: 8s; }
+        .star:nth-child(3) { top: 30%; left: 60%; animation-duration: 6s; }
+        .star:nth-child(4) { top: 50%; left: 20%; animation-duration: 12s; }
+        .star:nth-child(5) { top: 60%; left: 80%; animation-duration: 9s; }
+        .star:nth-child(6) { top: 70%; left: 30%; animation-duration: 7s; }
+        .star:nth-child(7) { top: 80%; left: 50%; animation-duration: 11s; }
+        .star:nth-child(8) { top: 40%; left: 70%; animation-duration: 5s; }
+        .star:nth-child(9) { top: 10%; left: 90%; animation-duration: 6s; }
+        .star:nth-child(10) { top: 30%; left: 80%; animation-duration: 8s; }
+        /* ... otras estrellas ... */
+
+        /* Estilo del letrero */
+        .sign {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 50px;
+            color: white;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.7);
+            z-index: 100; /* Aseguramos que el letrero esté encima de las estrellas */
         }
-        .star:nth-child(2) {
-            top: 20%; left: 40%; animation-duration: 8s;
-        }
-        .star:nth-child(3) {
-            top: 30%; left: 60%; animation-duration: 6s;
-        }
-        .star:nth-child(4) {
-            top: 50%; left: 20%; animation-duration: 12s;
-        }
-        .star:nth-child(5) {
-            top: 60%; left: 80%; animation-duration: 9s;
-        }
-        .star:nth-child(6) {
-            top: 70%; left: 30%; animation-duration: 7s;
-        }
-        .star:nth-child(7) {
-            top: 80%; left: 50%; animation-duration: 11s;
-        }
-        .star:nth-child(8) {
-            top: 40%; left: 70%; animation-duration: 5s;
-        }
-        .star:nth-child(9) {
-            top: 10%; left: 90%; animation-duration: 6s;
-        }
-        .star:nth-child(10) {
-            top: 30%; left: 80%; animation-duration: 8s;
-        }
-        .star:nth-child(11) {
-            top: 15%; left: 5%; animation-duration: 7s;
-        }
-        .star:nth-child(12) {
-            top: 25%; left: 45%; animation-duration: 5s;
-        }
-        .star:nth-child(13) {
-            top: 35%; left: 75%; animation-duration: 10s;
-        }
-        .star:nth-child(14) {
-            top: 45%; left: 35%; animation-duration: 6s;
-        }
-        .star:nth-child(15) {
-            top: 55%; left: 25%; animation-duration: 8s;
-        }
-        .star:nth-child(16) {
-            top: 65%; left: 85%; animation-duration: 7s;
-        }
-        .star:nth-child(17) {
-            top: 75%; left: 65%; animation-duration: 9s;
-        }
-        .star:nth-child(18) {
-            top: 85%; left: 55%; animation-duration: 12s;
-        }
-        .star:nth-child(19) {
-            top: 95%; left: 15%; animation-duration: 11s;
-        }
-        .star:nth-child(20) {
-            top: 40%; left: 50%; animation-duration: 6s;
-        }
+
     </style>
 </head>
 <body>
     <div class="space">
-        <!-- Más estrellas -->
+        <!-- Estrellas -->
         <div class="star"></div>
         <div class="star"></div>
         <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
+        <!-- ... más estrellas ... -->
+
+        <!-- Letrero en el centro -->
+        <div class="sign">The Dark Side Software</div>
+    </div>
+</body>
+</html>
