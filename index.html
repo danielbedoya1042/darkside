@@ -9,152 +9,114 @@
     <!-- Fuente estilo calculadora (Digital) -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
-        body, html {
+        /* Reset y ajustes generales */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
             height: 100%;
             overflow: hidden;
             background-color: black;
-            font-family: 'Star Wars', sans-serif; /* Fuente Star Wars */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
 
         .space {
-            position: relative;
+            position: absolute;
             width: 100%;
             height: 100%;
             overflow: hidden;
         }
 
+        /* Estrellas animadas */
         .star {
             position: absolute;
             width: 3px;
             height: 3px;
             border-radius: 50%;
             background-color: white;
-            box-shadow: 0 0 10px white; /* Efecto de brillo */
+            box-shadow: 0 0 10px white;
             animation: moveStar 5s linear infinite, flicker 0.5s alternate infinite;
         }
 
-        /* Animación de movimiento de las estrellas por toda la pantalla */
         @keyframes moveStar {
-            0% {
-                transform: translateX(0) translateY(0);
-            }
-            100% {
-                transform: translateX(100vw) translateY(100vh);
-            }
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(100vw) translateY(100vh); }
         }
 
-        /* Efecto de parpadeo para hacer las estrellas más brillantes */
         @keyframes flicker {
-            0% {
-                opacity: 0.8;
-            }
-            100% {
-                opacity: 1;
-            }
+            0% { opacity: 0.8; }
+            100% { opacity: 1; }
         }
 
-        .star:nth-child(1) { top: 5%; left: 10%; animation-duration: 10s; }
-        .star:nth-child(2) { top: 20%; left: 40%; animation-duration: 8s; }
-        .star:nth-child(3) { top: 30%; left: 60%; animation-duration: 6s; }
-        .star:nth-child(4) { top: 50%; left: 20%; animation-duration: 12s; }
-        .star:nth-child(5) { top: 60%; left: 80%; animation-duration: 9s; }
-        .star:nth-child(6) { top: 70%; left: 30%; animation-duration: 7s; }
-        .star:nth-child(7) { top: 80%; left: 50%; animation-duration: 11s; }
-        .star:nth-child(8) { top: 40%; left: 70%; animation-duration: 5s; }
-        .star:nth-child(9) { top: 10%; left: 90%; animation-duration: 6s; }
-        .star:nth-child(10) { top: 3%; left: 1%; animation-duration: 8s; }
-        .star:nth-child(11) { top: 20%; left: 2%; animation-duration: 15s; }
-        .star:nth-child(12) { top: 15%; left: 2%; animation-duration: 13s; }
-        .star:nth-child(13) { top: 10%; left: 3%; animation-duration: 10s; }
-        .star:nth-child(14) { top: 50%; left: 10%; animation-duration: 5s; }
-        .star:nth-child(15) { top: 10%; left: 50%; animation-duration: 14s; }
-        .star:nth-child(16) { top: 20%; left: 20%; animation-duration: 13s; }
-        .star:nth-child(17) { top: 70%; left: 80%; animation-duration: 8s; }
-        /* ... otras estrellas ... */
+        /* Posicionamiento aleatorio de las estrellas */
+        .star:nth-child(n) {
+            top: calc(100% * var(--y));
+            left: calc(100% * var(--x));
+            animation-duration: calc(5s + var(--speed) * 10s);
+        }
 
-        /* Estilo del letrero principal (The Dark Side Software) */
+        /* Estilos del letrero principal */
         .sign {
-            position: absolute;
-            top: 40%;  /* Movido un poco más arriba */
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 70px;
+            font-size: 5vw;
+            font-family: 'Star Wars', sans-serif;
             color: white;
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.7);
-            z-index: 100; /* Aseguramos que el letrero esté encima de las estrellas */
-            text-align: center; 
+            text-align: center;
         }
 
-        /* Estilo del letrero de Contact */
-        .contact {
-            position: absolute;
-            top: 60%;  /* Posicionamos debajo del primer letrero */
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 20px;
-            color: #00FF00; /* Color verde brillante como las pantallas de calculadora */
-            font-family: 'Press Start 2P', cursive; /* Fuente estilo calculadora */
+        /* Letrero de contacto */
+        .contact, .email {
+            font-family: 'Press Start 2P', cursive;
+            text-align: center;
             text-shadow: 0 0 15px rgba(0, 255, 0, 0.8), 0 0 25px rgba(0, 255, 0, 0.6);
-            z-index: 100;
+            color: #00FF00;
+        }
+
+        .contact {
+            font-size: 2vw;
+            margin-top: 2vh;
         }
 
         .email {
-            position: absolute;
-            top: 70%; /* Abajo del letrero de Contact */
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 25px;
-            color: #00FF00; /* Verde brillante */
-            font-family: 'Press Start 2P', cursive;
-            text-shadow: 0 0 15px rgba(0, 255, 0, 0.8), 0 0 25px rgba(0, 255, 0, 0.6);
-            z-index: 100;
+            font-size: 2vw;
+            margin-top: 1vh;
         }
+
+        /* Ajustes para pantallas pequeñas (móviles) */
+        @media (max-width: 600px) {
+            .sign { font-size: 8vw; }
+            .contact { font-size: 4vw; }
+            .email { font-size: 3.5vw; }
+        }
+
     </style>
 </head>
 <body>
     <div class="space">
-        <!-- Estrellas -->
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-
-        <!-- Letrero en el centro -->
-        <div class="sign">The Dark Side Software</div>
-
-        <!-- Letrero de Contact -->
-        <div class="contact">Contact</div>
-
-        <!-- Correo electrónico -->
-        <div class="email">admin@thedarkside.com.co</div>
+        <!-- Estrellas generadas dinámicamente -->
+        <script>
+            const space = document.querySelector('.space');
+            for (let i = 0; i < 30; i++) {
+                let star = document.createElement('div');
+                star.classList.add('star');
+                star.style.setProperty('--x', Math.random());
+                star.style.setProperty('--y', Math.random());
+                star.style.setProperty('--speed', Math.random());
+                space.appendChild(star);
+            }
+        </script>
     </div>
+
+    <!-- Letrero en el centro -->
+    <div class="sign">The Dark Side Software</div>
+    <div class="contact">Contact</div>
+    <div class="email">sebastian@thedarkside.com.co</div>
+
 </body>
 </html>
