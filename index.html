@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Dark Side Software</title>
-        <!-- Fuente Star Wars -->
+    <!-- Fuente Star Wars -->
     <link href="https://fonts.cdnfonts.com/css/star-wars" rel="stylesheet">
     <!-- Fuente estilo calculadora -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -22,92 +22,139 @@
             text-align: center;
         }
 
-        .space {
+        canvas {
             position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden;
         }
-
-        .star {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            border-radius: 50%;
-            background-color: white;
-            box-shadow: 0 0 10px white;
-            animation: moveStar linear infinite, flicker alternate infinite;
-            opacity: 0.8;
-        }
-
-        /* Animación de movimiento */
-        @keyframes moveStar {
-            0% { transform: translateX(0) translateY(0) scale(var(--size)); }
-            100% { transform: translateX(100vw) translateY(100vh) scale(var(--size)); }
-        }
-
-        /* Parpadeo */
-        @keyframes flicker {
-            0% { opacity: 0.6; }
-            100% { opacity: 1; }
-        }
-
-        /* Tamaños y velocidades aleatorias */
-        .star:nth-child(odd) { --size: 1; animation-duration: 5s; }
-        .star:nth-child(even) { --size: 1.5; animation-duration: 8s; }
-        .star:nth-child(3n) { --size: 2; animation-duration: 6s; }
 
         /* Estilo del título */
         .sign {
-            font-size: clamp(20px, 7vw, 70px);
+            font-size: clamp(15px, 5vw, 50px);
             font-family: 'Star Wars', sans-serif;
             color: white;
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
             font-weight: bold;
             margin-bottom: 10vh;
+            padding: 0 10px;
+            z-index: 1;
         }
 
         /* Contact */
         .contact {
-            font-size: 2vw;
+            font-size: 1vw;
             color: #00FF00;
             font-family: 'Press Start 2P', cursive;
             text-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+            z-index: 1;
         }
 
         .email {
-            font-size: 2vw;
+            font-size: 1.5vw;
             color: #00FF00;
             font-family: 'Press Start 2P', cursive;
             text-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
             margin-top: 1vh;
+            z-index: 1;
         }
 
         /* Ajustes para pantallas pequeñas */
         @media (max-width: 768px) {
-            .sign { font-size: 8vw; }
-            .contact { font-size: 4vw; }
-            .email { font-size: 4.5vw; }
+            .sign { font-size: 6vw; }
+            .contact { font-size: 2.5vw; }
+            .email { font-size: 3.5vw; }
         }
     </style>
 </head>
 <body>
-    <div class="space">
-        <!-- Estrellas -->
-        <script>
-            for (let i = 0; i < 30; i++) {
-                let star = document.createElement('div');
-                star.className = 'star';
-                star.style.top = `${Math.random() * 100}vh`;
-                star.style.left = `${Math.random() * 100}vw`;
-                document.querySelector('.space').appendChild(star);
-            }
-        </script>
-    </div>
+    <canvas id="hiperespacio"></canvas>
 
     <!-- Letrero -->
     <div class="sign">The Dark Side Software</div>
     <div class="contact">Contact</div>
     <div class="email">admin@thedarkside.com.co</div>
+
+    <script>
+        const canvas = document.getElementById('hiperespacio');
+        const ctx = canvas.getContext('2d');
+
+        function ajustarTamañoCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        ajustarTamañoCanvas();
+
+        const numEstrellas = 400;
+        const estrellas = [];
+
+        function inicializarEstrellas() {
+            const centroX = canvas.width / 2;
+            const centroY = canvas.height / 2;
+
+            estrellas.length = 0;
+            for (let i = 0; i < numEstrellas; i++) {
+                estrellas.push({
+                    x: Math.random() * canvas.width - centroX,
+                    y: Math.random() * canvas.height - centroY,
+                    z: Math.random() * canvas.width,
+                    pz: Math.random() * canvas.width,
+                    size: Math.random() < 0.05 ? 4 : 1,
+                    color: Math.random() < 0.3 ? `hsl(${Math.random() * 360}, 100%, 70%)` : 'white'
+                });
+            }
+        }
+
+        inicializarEstrellas();
+
+        function animar() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            const centroX = canvas.width / 2;
+            const centroY = canvas.height / 2;
+
+            for (let i = 0; i < numEstrellas; i++) {
+                const estrella = estrellas[i];
+
+                const sx = (estrella.x / estrella.z) * canvas.width + centroX;
+                const sy = (estrella.y / estrella.z) * canvas.width + centroY;
+
+                const psx = (estrella.x / estrella.pz) * canvas.width + centroX;
+                const psy = (estrella.y / estrella.pz) * canvas.width + centroY;
+
+                estrella.pz = estrella.z;
+
+                ctx.strokeStyle = estrella.color;
+                ctx.lineWidth = estrella.size;
+                ctx.beginPath();
+                ctx.moveTo(psx, psy);
+                ctx.lineTo(sx, sy);
+                ctx.stroke();
+
+                estrella.z -= 2;
+
+                if (estrella.z < 1) {
+                    estrella.z = canvas.width;
+                    estrella.x = Math.random() * canvas.width - centroX;
+                    estrella.y = Math.random() * canvas.height - centroY;
+                    estrella.pz = estrella.z;
+                    estrella.size = Math.random() < 0.05 ? 4 : 1;
+                    estrella.color = Math.random() < 0.3 ? `hsl(${Math.random() * 360}, 100%, 70%)` : 'white';
+                }
+            }
+
+            requestAnimationFrame(animar);
+        }
+
+        animar();
+
+        window.addEventListener('resize', () => {
+            ajustarTamañoCanvas();
+            inicializarEstrellas();
+        });
+    </script>
 </body>
 </html>
