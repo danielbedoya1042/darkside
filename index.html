@@ -37,7 +37,7 @@
             color: white;
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
             font-weight: bold;
-            margin-bottom: 10vh;
+            margin-bottom: 5vh;
             padding: 0 10px;
             z-index: 1;
         }
@@ -48,6 +48,7 @@
             color: #00FF00;
             font-family: 'Press Start 2P', cursive;
             text-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+            margin-bottom: 2vh;
             z-index: 1;
         }
 
@@ -57,6 +58,18 @@
             font-family: 'Press Start 2P', cursive;
             text-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
             margin-top: 1vh;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        /* Pie de página */
+        .footer {
+            font-size: 0.8vw;
+            color: white;
+            font-family: 'Press Start 2P', cursive;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            position: absolute;
+            bottom: 10px;
             z-index: 1;
         }
 
@@ -65,6 +78,7 @@
             .sign { font-size: 6vw; }
             .contact { font-size: 2.5vw; }
             .email { font-size: 3.5vw; }
+            .footer { font-size: 2vw; }
         }
     </style>
 </head>
@@ -75,6 +89,7 @@
     <div class="sign">The Dark Side Software</div>
     <div class="contact">Contact</div>
     <div class="email">admin@thedarkside.com.co</div>
+    <div class="footer">Innovación que impulsa el futuro</div>
 
     <script>
         const canvas = document.getElementById('hiperespacio');
@@ -154,6 +169,11 @@
         window.addEventListener('resize', () => {
             ajustarTamañoCanvas();
             inicializarEstrellas();
+        });
+
+        // Evento para abrir el cliente de correo al hacer clic en el correo electrónico
+        document.querySelector('.email').addEventListener('click', () => {
+            window.location.href = 'mailto:admin@thedarkside.com.co';
         });
     </script>
 </body>
